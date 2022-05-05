@@ -1,12 +1,14 @@
 all: build
 .PHONY: all
 
+# This variable affects which manifest directory is used/updated.
+MINORVERSION?=4.9
+
 # Include the library makefile
 include $(addprefix ./vendor/github.com/openshift/build-machinery-go/make/, \
 	golang.mk \
 	targets/openshift/deps-gomod.mk \
 	targets/openshift/images.mk \
-	targets/openshift/bindata.mk \
 )
 
 # Run core verification and all self contained tests.
@@ -25,10 +27,10 @@ IMAGE_REGISTRY?=registry.svc.ci.openshift.org
 # $3 - Dockerfile path
 # $4 - context directory for image build
 # It will generate target "image-$(1)" for building the image and binding it as a prerequisite to target "images".
-$(call build-image,gcp-pd-csi-driver-operator,$(IMAGE_REGISTRY)/ocp/4.7:gcp-pd-csi-driver-operator,./Dockerfile.rhel7,.)
+$(call build-image,ibm-powervs-block-csi-driver-operator,$(IMAGE_REGISTRY)/ocp/4.8:ibm-powervs-block-csi-driver-operator,./Dockerfile,.)
 
 clean:
-	$(RM) gcp-pd-csi-driver-operator
+	$(RM) ibm-powervs-block-csi-driver-operator
 .PHONY: clean
 
 GO_TEST_PACKAGES :=./pkg/... ./cmd/...
@@ -37,7 +39,14 @@ GO_TEST_PACKAGES :=./pkg/... ./cmd/...
 #
 # Example:
 #   make test-e2e
-test-e2e:
-	hack/e2e.sh
+#test-e2e:
+#	hack/e2e.sh
+#.PHONY: test-e2e
 
-.PHONY: test-e2e
+# TODO: add update-bundle for OLM metadata
+# update: update-bundle
+# .PHONY: update
+#
+#update-bundle:
+#	MINORVERSION=$(MINORVERSION) hack/update-bundle.sh
+#.PHONY: update-bundle

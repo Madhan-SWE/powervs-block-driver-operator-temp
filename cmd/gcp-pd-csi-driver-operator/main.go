@@ -7,8 +7,8 @@ import (
 	"github.com/spf13/cobra"
 	"k8s.io/component-base/cli"
 
-	"github.com/openshift/gcp-pd-csi-driver-operator/pkg/operator"
-	"github.com/openshift/gcp-pd-csi-driver-operator/pkg/version"
+	"github.com/openshift/ibm-powervs-block-csi-driver-operator/pkg/operator"
+	"github.com/openshift/ibm-powervs-block-csi-driver-operator/pkg/version"
 )
 
 func main() {
@@ -19,8 +19,8 @@ func main() {
 
 func NewOperatorCommand() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "gcp-pd-csi-driver-operator",
-		Short: "OpenShift GCP PD CSI Driver Operator",
+		Use:   "ibm-powervs-block-csi-driver-operator",
+		Short: "OpenShift IBM PowerVS Block CSI Driver Operator",
 		Run: func(cmd *cobra.Command, args []string) {
 			cmd.Help()
 			os.Exit(1)
@@ -28,12 +28,12 @@ func NewOperatorCommand() *cobra.Command {
 	}
 
 	ctrlCmd := controllercmd.NewControllerCommandConfig(
-		"gcp-pd-csi-driver-operator",
+		"ibm-powervs-block-csi-driver-operator",
 		version.Get(),
 		operator.RunOperator,
 	).NewCommand()
 	ctrlCmd.Use = "start"
-	ctrlCmd.Short = "Start the GCP PD CSI Driver Operator"
+	ctrlCmd.Short = "Start the IBM PowerVS Block CSI Driver Operator"
 
 	cmd.AddCommand(ctrlCmd)
 

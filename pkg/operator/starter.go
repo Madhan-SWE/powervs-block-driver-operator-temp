@@ -13,7 +13,7 @@ import (
 	opv1 "github.com/openshift/api/operator/v1"
 	configclient "github.com/openshift/client-go/config/clientset/versioned"
 	configinformers "github.com/openshift/client-go/config/informers/externalversions"
-	"github.com/openshift/gcp-pd-csi-driver-operator/assets"
+	"github.com/openshift/ibm-powervs-block-csi-driver-operator/assets"
 	"github.com/openshift/library-go/pkg/controller/controllercmd"
 	"github.com/openshift/library-go/pkg/controller/factory"
 	"github.com/openshift/library-go/pkg/operator/csi/csicontrollerset"
@@ -26,10 +26,10 @@ import (
 const (
 	// Operand and operator run in the same namespace
 	defaultNamespace   = "openshift-cluster-csi-drivers"
-	operatorName       = "gcp-pd-csi-driver-operator"
-	operandName        = "gcp-pd-csi-driver"
-	secretName         = "gcp-pd-cloud-credentials"
-	trustedCAConfigMap = "gcp-pd-csi-driver-trusted-ca-bundle"
+	operatorName       = "ibm-powervs-block-csi-driver-operator"
+	operandName        = "ibm-powervs-block-csi-driver"
+	secretName         = "ibm-powervs-block-cloud-credentials"
+	trustedCAConfigMap = "ibm-powervs-block-csi-driver-trusted-ca-bundle"
 )
 
 func RunOperator(ctx context.Context, controllerConfig *controllercmd.ControllerContext) error {
@@ -64,14 +64,14 @@ func RunOperator(ctx context.Context, controllerConfig *controllercmd.Controller
 		operandName,
 		false,
 	).WithStaticResourcesController(
-		"GCPPDDriverStaticResourcesController",
+		"PowerVSBlockCSIDriverStaticResourcesController",
 		kubeClient,
 		dynamicClient,
 		kubeInformersForNamespaces,
 		assets.ReadFile,
 		[]string{
-			"storageclass.yaml",
-			"volumesnapshotclass.yaml",
+			"storageclass_tier1.yaml",
+			"storageclass_tier3.yaml",
 			"csidriver.yaml",
 			"controller_sa.yaml",
 			"controller_pdb.yaml",
@@ -87,18 +87,16 @@ func RunOperator(ctx context.Context, controllerConfig *controllercmd.Controller
 			"rbac/provisioner_binding.yaml",
 			"rbac/resizer_role.yaml",
 			"rbac/resizer_binding.yaml",
-			"rbac/snapshotter_role.yaml",
-			"rbac/snapshotter_binding.yaml",
 			"rbac/kube_rbac_proxy_role.yaml",
 			"rbac/kube_rbac_proxy_binding.yaml",
 			"rbac/prometheus_role.yaml",
 			"rbac/prometheus_rolebinding.yaml",
 		},
 	).WithCSIConfigObserverController(
-		"GCPPDDriverCSIConfigObserverController",
+		"PowerVSBlockDriverCSIConfigObserverController",
 		configInformers,
 	).WithCSIDriverControllerService(
-		"GCPPDDriverControllerServiceController",
+		"PowerVSBlockDriverControllerServiceController",
 		assets.ReadFile,
 		"controller.yaml",
 		kubeClient,
@@ -123,7 +121,7 @@ func RunOperator(ctx context.Context, controllerConfig *controllercmd.Controller
 		),
 		csidrivercontrollerservicecontroller.WithReplicasHook(nodeInformer.Lister()),
 	).WithCSIDriverNodeService(
-		"GCPPDDriverNodeServiceController",
+		"PowerVSBlockDriverNodeServiceController",
 		assets.ReadFile,
 		"node.yaml",
 		kubeClient,
@@ -136,7 +134,7 @@ func RunOperator(ctx context.Context, controllerConfig *controllercmd.Controller
 			configMapInformer,
 		),
 	).WithServiceMonitorController(
-		"GCPPDDriverServiceMonitorController",
+		"PowerVSBlockCSIServiceMonitorController",
 		dynamicClient,
 		assets.ReadFile,
 		"servicemonitor.yaml",
