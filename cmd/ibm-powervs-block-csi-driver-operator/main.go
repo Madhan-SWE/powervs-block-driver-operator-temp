@@ -20,7 +20,7 @@ func main() {
 func NewOperatorCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "ibm-powervs-block-csi-driver-operator",
-		Short: "OpenShift IBM PowerVS Block CSI Driver Operator",ßß
+		Short: "OpenShift IBM PowerVS Block CSI Driver Operator",
 		Run: func(cmd *cobra.Command, args []string) {
 			cmd.Help()
 			os.Exit(1)
