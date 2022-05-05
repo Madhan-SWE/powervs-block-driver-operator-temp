@@ -36,7 +36,7 @@ func Get() version.Info {
 func init() {
 	buildInfo := prometheus.NewGaugeVec(
 		prometheus.GaugeOpts{
-			Name: "openshift_ibm_powervs-block_csi_driver_operator",
+			Name: "openshift_ibm_powervs_block_csi_driver_operator",
 			Help: "A metric with a constant '1' value labeled by major, minor, git commit & git version from which OpenShift IBM PowerVS Block CSI Driver Operator was built.",
 		},
 		[]string{"major", "minor", "gitCommit", "gitVersion"},

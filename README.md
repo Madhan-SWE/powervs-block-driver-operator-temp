@@ -25,21 +25,16 @@ EOF
 make
 
 # Set the environment variables
-export DRIVER_IMAGE=amazon/aws-efs-csi-driver:v1.1.1
+export DRIVER_IMAGE=gcr.io/k8s-staging-cloud-provider-ibm/ibm-powervs-block-csi-driver:v0.1.0-alpha.3
+export PROVISIONER_IMAGE=quay.io/openshift/origin-csi-external-provisioner:latest
+export ATTACHER_IMAGE=quay.io/openshift/origin-csi-external-attacher:latest
+export RESIZER_IMAGE=quay.io/openshift/origin-csi-external-resizer:latest
 export NODE_DRIVER_REGISTRAR_IMAGE=quay.io/openshift/origin-csi-node-driver-registrar:latest
-export LIVENESS_PROBE_IMAGE=quay.io/openshift/origin-csi-livenessprobe:4.8
-export OPERATOR_NAME=aws-efs-csi-driver-operator
+export LIVENESS_PROBE_IMAGE=quay.io/openshift/origin-csi-livenessprobe:latest
+export KUBE_RBAC_PROXY_IMAGE=quay.io/openshift/origin-kube-rbac-proxy:latest
 
 # Run the operator via CLI
-./aws-efs-csi-driver-operator start --kubeconfig $KUBECONFIG --namespace openshift-cluster-csi-drivers
-```
-
-# Automatic creation of EFS filesystem and storageclasses
-
-For local testing and e2e, following command can be run to automate creation of EFS filesystem:
-
-```
-STORAGECLASS_LOCATION=sc.yaml MANIFEST_LOCATION=manifest.yaml ./create-efs-volume start --kubeconfig $KUBECONFIG --namespace openshift-cluster-csi-drivers
+./ibm-powervs-block-csi-driver-operator start --kubeconfig $KUBECONFIG --namespace openshift-cluster-csi-drivers
 ```
 
 *Note*: Creation of EFS volume, security groups and firewall rules is not idempotent and hence you must delete those manually if you want to recreate.
