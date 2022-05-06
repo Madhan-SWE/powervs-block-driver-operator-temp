@@ -1,7 +1,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: aws-ebs-csi-driver-controller-monitor
+  name: ibm-powervs-block-csi-driver-controller-monitor
   namespace: openshift-cluster-csi-drivers
 spec:
   endpoints:
@@ -12,7 +12,7 @@ spec:
     scheme: https
     tlsConfig:
       caFile: /etc/prometheus/configmaps/serving-certs-ca-bundle/service-ca.crt
-      serverName: aws-ebs-csi-driver-controller-metrics.openshift-cluster-csi-drivers.svc
+      serverName: ibm-powervs-block-csi-driver-controller-metrics.openshift-cluster-csi-drivers.svc
   - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
     interval: 30s
     path: /metrics
@@ -20,7 +20,7 @@ spec:
     scheme: https
     tlsConfig:
       caFile: /etc/prometheus/configmaps/serving-certs-ca-bundle/service-ca.crt
-      serverName: aws-ebs-csi-driver-controller-metrics.openshift-cluster-csi-drivers.svc
+      serverName: ibm-powervs-block-csi-driver-controller-metrics.openshift-cluster-csi-drivers.svc
   - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
     interval: 30s
     path: /metrics
@@ -28,7 +28,7 @@ spec:
     scheme: https
     tlsConfig:
       caFile: /etc/prometheus/configmaps/serving-certs-ca-bundle/service-ca.crt
-      serverName: aws-ebs-csi-driver-controller-metrics.openshift-cluster-csi-drivers.svc
+      serverName: ibm-powervs-block-csi-driver-controller-metrics.openshift-cluster-csi-drivers.svc
   - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
     interval: 30s
     path: /metrics
@@ -36,8 +36,8 @@ spec:
     scheme: https
     tlsConfig:
       caFile: /etc/prometheus/configmaps/serving-certs-ca-bundle/service-ca.crt
-      serverName: aws-ebs-csi-driver-controller-metrics.openshift-cluster-csi-drivers.svc
+      serverName: ibm-powervs-block-csi-driver-controller-metrics.openshift-cluster-csi-drivers.svc
   jobLabel: component
   selector:
     matchLabels:
-      app: aws-ebs-csi-driver-controller-metrics
+      app: ibm-powervs-block-csi-driver-controller-metrics

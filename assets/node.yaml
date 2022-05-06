@@ -1,7 +1,7 @@
 kind: DaemonSet
 apiVersion: apps/v1
 metadata:
-  name: aws-ebs-csi-driver-node
+  name: ibm-powervs-block-csi-driver-node
   namespace: openshift-cluster-csi-drivers
   annotations:
     config.openshift.io/inject-proxy: csi-driver
@@ -9,7 +9,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: aws-ebs-csi-driver-node
+      app: ibm-powervs-block-csi-driver-node
   updateStrategy:
     type: RollingUpdate
     rollingUpdate:
@@ -17,10 +17,10 @@ spec:
   template:
     metadata:
       labels:
-        app: aws-ebs-csi-driver-node
+        app: ibm-powervs-block-csi-driver-node
     spec:
       hostNetwork: true
-      serviceAccount: aws-ebs-csi-driver-node-sa
+      serviceAccount: ibm-powervs-block-csi-driver-node-sa
       priorityClassName: system-node-critical
       tolerations:
         - operator: Exists

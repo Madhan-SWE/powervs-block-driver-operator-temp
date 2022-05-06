@@ -37,16 +37,6 @@ export KUBE_RBAC_PROXY_IMAGE=quay.io/openshift/origin-kube-rbac-proxy:latest
 ./ibm-powervs-block-csi-driver-operator start --kubeconfig $KUBECONFIG --namespace openshift-cluster-csi-drivers
 ```
 
-*Note*: Creation of EFS volume, security groups and firewall rules is not idempotent and hence you must delete those manually if you want to recreate.
-
-This should give us a storageclass which can be applied and can be used for testing:
-
-```
-oc create -f sc.yaml
-TEST_CSI_DRIVER_FILES=manifest.yaml ./openshift-tests run openshift/csi .
-```
-
-
 # OLM
 
 To build an bundle + index images, use `hack/create-bundle`.

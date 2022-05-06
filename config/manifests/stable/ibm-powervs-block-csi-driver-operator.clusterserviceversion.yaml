@@ -121,7 +121,7 @@ spec:
             - ''
             resourceNames:
             - extension-apiserver-authentication
-            - aws-ebs-csi-driver-operator-lock
+            - ibm-powervs-block-csi-driver-operator-lock
             resources:
             - configmaps
             verbs:
