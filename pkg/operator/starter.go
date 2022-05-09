@@ -87,6 +87,8 @@ func RunOperator(ctx context.Context, controllerConfig *controllercmd.Controller
 			"rbac/provisioner_binding.yaml",
 			"rbac/resizer_role.yaml",
 			"rbac/resizer_binding.yaml",
+			"rbac/csi_node_role.yaml",
+			"rbac/csi_node_binding.yaml",
 			"rbac/kube_rbac_proxy_role.yaml",
 			"rbac/kube_rbac_proxy_binding.yaml",
 			"rbac/prometheus_role.yaml",
