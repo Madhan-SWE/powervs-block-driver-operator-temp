@@ -48,7 +48,6 @@ spec:
             - --endpoint=$(CSI_ENDPOINT)
             - --logtostderr
             - --v=${LOG_LEVEL}
-            - --extra-labels=kubernetes-io-cluster-${CLUSTER_ID}=owned
           env:
             - name: CSI_ENDPOINT
               value: unix:///var/lib/csi/sockets/pluginproxy/csi.sock
