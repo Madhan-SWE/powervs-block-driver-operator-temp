@@ -14,7 +14,7 @@ oc apply -f - <<EOF
 apiVersion: operator.openshift.io/v1
 kind: ClusterCSIDriver
 metadata:
-    name: powervs.csi.ibm.com
+    name: efs.csi.aws.com
 spec:
   logLevel: Normal
   managementState: Managed
