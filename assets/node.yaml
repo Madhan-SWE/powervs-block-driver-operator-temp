@@ -38,7 +38,7 @@ spec:
             - --v=${LOG_LEVEL}
           env:
             - name: CSI_ENDPOINT
-              value: /csi/csi.sock
+              value: unix:/csi/csi.sock
             - name: CSI_NODE_NAME
               valueFrom:
                 fieldRef:
