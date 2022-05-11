@@ -7,16 +7,15 @@ metadata:
     categories: Storage
     "operatorframework.io/suggested-namespace": openshift-cluster-csi-drivers
     capabilities: Full Lifecycle
-    containerImage: quay.io/openshift/origin-ibm-powervs-block-csi-driver-operator:latest
+    containerImage: quay.io/mchellam/origin-ibm-powervs-block-csi-driver-operator:latest
     support: Red Hat
     operators.openshift.io/infrastructure-features: '["csi"]'
-    repository: https://github.com/openshift/ibm-powervs-block-csi-driver-operator
+    repository: https://github.com/madhan-swe/ibm-powervs-block-csi-driver-operator-temp
     createdAt: "2021-07-14T00:00:00Z"
     description: Install and configure IBM PowerVS Block CSI driver.
     olm.skipRange: ">=4.9.0 <4.12.0"
   labels:
     operator-metering: "true"
-    "operatorframework.io/arch.ppc64le": supported
     "operatorframework.io/arch.ppc64le": supported
 spec:
   displayName: IBM PowerVS Block CSI Driver Operator
@@ -289,7 +288,7 @@ spec:
                 serviceAccountName: ibm-powervs-block-csi-driver-operator
                 containers:
                 - name: ibm-powervs-block-csi-driver-operator
-                  image: quay.io/openshift/origin-ibm-powervs-block-csi-driver-operator:latest
+                  image: quay.io/mchellam/ibm-powervs-block-csi-driver-operator:latest
                   imagePullPolicy: IfNotPresent
                   args:
                     - "start"
