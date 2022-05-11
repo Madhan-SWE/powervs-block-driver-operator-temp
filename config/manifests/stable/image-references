@@ -6,7 +6,7 @@ spec:
   - name: ibm-powervs-block-csi-driver-rhel8-operator
     from:
       kind: DockerImage
-      name: quay.io/mchellam/ibm-powervs-block-csi-driver-operator:latest
+      name: rcmadhankumar/ibm-powervs-block-csi-driver-operator:latest
   - name: ibm-powervs-block-csi-driver-container-rhel8
     from:
       kind: DockerImage
