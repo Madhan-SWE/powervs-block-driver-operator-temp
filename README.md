@@ -26,12 +26,12 @@ make
 
 # Set the environment variables
 export DRIVER_IMAGE=gcr.io/k8s-staging-cloud-provider-ibm/ibm-powervs-block-csi-driver:v0.1.0-alpha.3
-export PROVISIONER_IMAGE=quay.io/openshift/origin-csi-external-provisioner:latest
-export ATTACHER_IMAGE=quay.io/openshift/origin-csi-external-attacher:latest
-export RESIZER_IMAGE=quay.io/openshift/origin-csi-external-resizer:latest
-export NODE_DRIVER_REGISTRAR_IMAGE=quay.io/openshift/origin-csi-node-driver-registrar:latest
-export LIVENESS_PROBE_IMAGE=quay.io/openshift/origin-csi-livenessprobe:latest
-export KUBE_RBAC_PROXY_IMAGE=quay.io/openshift/origin-kube-rbac-proxy:latest
+export PROVISIONER_IMAGE=k8s.gcr.io/sig-storage/csi-provisioner:v3.1.0
+export ATTACHER_IMAGE=k8s.gcr.io/sig-storage/csi-attacher:v3.4.0
+export RESIZER_IMAGE=k8s.gcr.io/sig-storage/csi-resizer:v1.4.0
+export NODE_DRIVER_REGISTRAR_IMAGE=k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.5.0
+export LIVENESS_PROBE_IMAGE=k8s.gcr.io/sig-storage/livenessprobe:v2.6.0
+export KUBE_RBAC_PROXY_IMAGE=quay.io/brancz/kube-rbac-proxy:v0.12.0
 
 # Run the operator via CLI
 ./ibm-powervs-block-csi-driver-operator start --kubeconfig $KUBECONFIG --namespace openshift-cluster-csi-drivers
